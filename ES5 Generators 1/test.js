@@ -38,6 +38,36 @@ seqStartStep = function (args){
     }
 }
 
+seqFactorial = function (args) {
+    var startNum = 0;
+    if(args !== undefined && args[0] > -1){
+        startNum = args[0];
+
+        if (startNum === 0 || startNum === 1) {
+            return function () {
+                return 1;
+            }
+        }
+
+        var result = startNum;
+        var firstStep = true;
+        return function () {
+            if(firstStep){
+                //display the startNum first
+                firstStep = false;
+                return startNum;
+            }
+            while (startNum > 1) { 
+                startNum--;
+                return result *= startNum;
+            }
+        }
+    }
+
+    //start at 
+    
+}
+
 generator = function(sequencer, args){
     return {
        next: sequencer(args)
@@ -45,23 +75,28 @@ generator = function(sequencer, args){
 }
 
 // var seq = generator(dummySeq);
-// console.log(seq.next()); // 'dummy'
-// console.log(seq.next()); // 'dummy'
-// console.log(seq.next()); // 'dummy'
+// for (var i = 0; i < 3; i++) {
+//     console.log(seq.next());
+// }
 
-var seq = generator(seqIncrementByOne);
-console.log(seq.next()); // 0
-console.log(seq.next()); // 1
-console.log(seq.next()); // 2
+// var seq = generator(seqIncrementByOne);
+// for (var i = 0; i < 3; i++) {
+//     console.log(seq.next());
+// }
 
-seq = generator(seqIncrementByOne, [10]);
-console.log(seq.next()); // 10
-console.log(seq.next()); // 11
-console.log(seq.next()); // 12
+// seq = generator(seqIncrementByOne, [10]);
+// for (var i = 0; i < 3; i++) {
+//     console.log(seq.next());
+// }
 
-seq = generator(seqStartStep, [1, 3]);
-console.log(seq.next()); // 1
-console.log(seq.next()); // 4
-console.log(seq.next()); // 7
+// seq = generator(seqStartStep, [1, 3]);
+// for (var i = 0; i < 3; i++) {
+//     console.log(seq.next());
+// }
+
+var seq = generator(seqFactorial, [5]);
+for (var i = 0; i < 5; i++) {
+    console.log(seq.next()); 
+}
 
 //from https://www.codewars.com/kata/es5-generators-i
