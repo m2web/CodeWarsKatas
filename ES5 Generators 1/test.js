@@ -16,7 +16,7 @@ seqIncrementByOne = function (args){
     }
 }
 
-seqStartStep = function (args){
+rangeSeq = function (args){
     var startNum = 0;
     var stepNum = 1;
 
@@ -38,7 +38,7 @@ seqStartStep = function (args){
     }
 }
 
-seqFactorial = function (args) {
+factorialSeq = function (args) {
     var startNum = 0;
     if(args !== undefined && args[0] > -1){
         startNum = args[0];
@@ -62,10 +62,11 @@ seqFactorial = function (args) {
                 return result *= startNum;
             }
         }
+    }else{
+        return function () {
+            return undefined;
+        }
     }
-
-    //start at 
-    
 }
 
 generator = function(sequencer, args){
@@ -79,23 +80,23 @@ generator = function(sequencer, args){
 //     console.log(seq.next());
 // }
 
-// var seq = generator(seqIncrementByOne);
-// for (var i = 0; i < 3; i++) {
-//     console.log(seq.next());
-// }
+seq = generator(seqIncrementByOne);
+for (var i = 0; i < 3; i++) {
+    console.log(seq.next());
+}
 
-// seq = generator(seqIncrementByOne, [10]);
-// for (var i = 0; i < 3; i++) {
-//     console.log(seq.next());
-// }
+seq = generator(seqIncrementByOne, [10]);
+for (var i = 0; i < 3; i++) {
+    console.log(seq.next());
+}
 
-// seq = generator(seqStartStep, [1, 3]);
-// for (var i = 0; i < 3; i++) {
-//     console.log(seq.next());
-// }
+seq = generator(rangeSeq, [1, 3]);
+for (var i = 0; i < 3; i++) {
+    console.log(seq.next());
+}
 
-var seq = generator(seqFactorial, [5]);
-for (var i = 0; i < 5; i++) {
+seq = generator(factorialSeq, [10]);
+for (var i = 0; i < 10; i++) {
     console.log(seq.next()); 
 }
 
