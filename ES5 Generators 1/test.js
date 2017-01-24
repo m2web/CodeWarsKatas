@@ -5,16 +5,16 @@
 //   };
 // }
 
-seqIncrementByOne = function (args){
-    var index = 0;
-    if(args !== undefined && args[0] > -1){
-        index = args[0];
-    }
+// seqIncrementByOne = function (args){
+//     var index = 0;
+//     if(args !== undefined && args[0] > -1){
+//         index = args[0];
+//     }
 
-    return function () {
-        return index++;
-    }
-}
+//     return function () {
+//         return index++;
+//     }
+// }
 
 rangeSeq = function (args){
     var startNum = 0;
@@ -80,10 +80,10 @@ generator = function(sequencer, args){
 //     console.log(seq.next());
 // }
 
-seq = generator(seqIncrementByOne);
-for (var i = 0; i < 3; i++) {
-    console.log(seq.next());
-}
+// seq = generator(seqIncrementByOne);
+// for (var i = 0; i < 3; i++) {
+//     console.log(seq.next());
+// }
 
 seq = generator(seqIncrementByOne, [10]);
 for (var i = 0; i < 3; i++) {
